@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
       <div className="w-4/5 h-[800px] min-h-screen bg-[#CCD0CF]"></div>
 
       <div className="absolute inset-0 flex items-center justify-center mt-20">
-        <div className="bg-[#4A5C6A] p-8  border-lg shadow-lg max-w-lg ">
+        <div className="bg-[#4A5C6A] p-8 rounded-l-lg  border-lg shadow-lg max-w-lg ">
           <div className="flex flex-col items-center">
             <div>
               <img
@@ -26,24 +26,49 @@ const Hero: React.FC = () => {
             <div className="text-white text-lg font-light mb-6 tracking-widest">
               SOFTWARE ENGINEER
             </div>
-            <div className="  w-full py-2  flex justify-center space-x-4">
-              <FaLinkedinIn className="text-2xl text-gray-50 hover:text-[#06141B] duration-300" />
-              <FaGithub className="text-2xl text-gray-50 hover:text-[#06141B] duration-300" />
+            <div className="w-full py-2 flex justify-center space-x-4">
+              <a
+                href="https://www.linkedin.com/in/samuel-dushime-47a927278/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaLinkedinIn className="text-2xl text-gray-50 hover:text-[#06141B] duration-300" />
+              </a>
+              <a
+                href="https://github.com/Samenergy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaGithub className="text-2xl text-gray-50 hover:text-[#06141B] duration-300" />
+              </a>
             </div>
           </div>
         </div>
 
-        <div className="bg-white p-8 border border-lg shadow-lg max-w-lg">
+        <div className="bg-white p-8 border border-lg rounded-r-lg shadow-lg max-w-lg">
           <div className="mb-6">
             <p className="text-8xl font-bold mb-2">Hello</p>
             <p className=" text-2xl  mb-6">Here's who I am & what I do</p>
             <div className="flex space-x-4 mb-6">
-              <button className="bg-blue-500 text-white px-5 py-2 rounded-full hover:border border-blue-500  hover:bg-white hover:text-black duration-500">
-                Resume
-              </button>
-              <button className="bg-blue-500 text-white px-5 py-2 rounded-full hover:border border-blue-500  hover:bg-white hover:text-black duration-500">
-                Projects
-              </button>
+              <a
+                href="/Resume"
+                
+                rel="noopener noreferrer"
+              >
+                <button className="bg-blue-500 text-white px-5 py-2 rounded-full hover:border border-blue-500 hover:bg-white hover:text-black duration-500">
+                  Resume
+                </button>
+              </a>
+
+              <a
+                href="/Projects"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="bg-blue-500 text-white px-5 py-2 rounded-full hover:border border-blue-500 hover:bg-white hover:text-black duration-500">
+                  Projects
+                </button>
+              </a>
             </div>
           </div>
           <p className="font-light ">

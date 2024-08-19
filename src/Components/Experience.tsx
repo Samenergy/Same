@@ -13,9 +13,11 @@ const Experience: React.FC = () => {
             Download CV
           </a>
         </div>
-        <section className="  bg-white rounded-lg shadow-md p-20 flex gap-10">
+        <section className="  bg-white rounded-lg shadow-lg p-20 flex gap-10">
           <div className="w-1/3">
-            <h4 className="text-xl text-blue-500 font-bold">2024 - Present</h4>
+            <h4 className="text-lg text-blue-500 font-bold">
+              Feb 2024 - Present
+            </h4>
             <h5 className="text-lg font-medium mt-2">Backend Developer</h5>
             <p className="text-gray-600 mt-2">Green Art Tech</p>
             <p className="text-gray-600">Kigali, Rwanda</p>
@@ -26,6 +28,23 @@ const Experience: React.FC = () => {
               maintaining web applications. Developing APIs, working with
               databases, and integrating third-party services. Ensuring that
               applications are secure, scalable, and maintainable.
+            </p>
+          </div>
+        </section>
+        <section className="  bg-white rounded-lg shadow-lg p-20 flex gap-10 mt-10">
+          <div className="w-1/3">
+            <h4 className="text-lg text-blue-500 font-bold">
+              Aug 2022 - Dec 2023
+            </h4>
+            <h5 className="text-lg font-medium mt-2">Website Tester</h5>
+            <p className="text-gray-600 mt-2">Consultified Rwanda</p>
+            <p className="text-gray-600">Kigali, Rwanda</p>
+          </div>
+          <div className="w-2/3">
+            <p className="text-gray-700">
+              Conducted website testing, identified issues, executed test cases,
+              and provided feedback. Collaborated with teams to implement
+              improvements and maintained clear documentation.
             </p>
           </div>
         </section>

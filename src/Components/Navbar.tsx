@@ -5,13 +5,14 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full py-5 bg-[#fff] text-black shadow-md z-50 px-5 ">
+    <nav className="fixed top-0 w-full py-5 bg-[#fff] text-black shadow-lg z-50 px-5 ">
       <div className="container mx-auto flex justify-between items-center">
         <a href="/" className="text-black text-xl font-bold">
           <div className="flex items-center gap-2">
             <FaSquare className="text-blue-800" />
             <p>
-              Samuel Dushime <span className="font-light uppercase"> / Software Engineer</span>{" "}
+              Samuel Dushime{" "}
+              <span className="font-light uppercase"> / Software Engineer</span>{" "}
             </p>
           </div>
         </a>
