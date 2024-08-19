@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./index.css";
 import Navbar from "./Components/Navbar";
@@ -17,11 +17,7 @@ const App: React.FC = () => {
     <div className="overflow-y-auto">
       <Navbar />
       <TransitionGroup>
-        <CSSTransition
-          key={location.key}
-          classNames="fade"
-          timeout={300}
-        >
+        <CSSTransition key={location.key} classNames="fade" timeout={300}>
           <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/Resume" element={<Resume />} />
