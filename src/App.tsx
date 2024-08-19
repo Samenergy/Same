@@ -8,6 +8,7 @@ import Footer from "./Components/Footer";
 import Home from "./Components/Home";
 import Resume from "./Components/Resume";
 import ProjectsSection from "./Components/Projects";
+import ContactForm from "./Components/Contact";
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/Resume" element={<Resume />} />
             <Route path="/Projects" element={<ProjectsSection />} />
+            <Route path="/Contact" element={<ContactForm />} />
           </Routes>
         </CSSTransition>
       </TransitionGroup>

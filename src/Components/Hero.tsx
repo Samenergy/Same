@@ -50,21 +50,13 @@ const Hero: React.FC = () => {
             <p className="text-8xl font-bold mb-2">Hello</p>
             <p className=" text-2xl  mb-6">Here's who I am & what I do</p>
             <div className="flex space-x-4 mb-6">
-              <a
-                href="/Resume"
-                
-                rel="noopener noreferrer"
-              >
+              <a href="/Resume" rel="noopener noreferrer">
                 <button className="bg-blue-500 text-white px-5 py-2 rounded-full hover:border border-blue-500 hover:bg-white hover:text-black duration-500">
                   Resume
                 </button>
               </a>
 
-              <a
-                href="/Projects"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="/Projects" rel="noopener noreferrer">
                 <button className="bg-blue-500 text-white px-5 py-2 rounded-full hover:border border-blue-500 hover:bg-white hover:text-black duration-500">
                   Projects
                 </button>
