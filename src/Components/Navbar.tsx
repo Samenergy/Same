@@ -5,7 +5,7 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full py-5 bg-[#fff] text-black shadow-md z-50">
+    <nav className="fixed top-0 w-full py-5 bg-[#fff] text-black shadow-md z-50 px-5 ">
       <div className="container mx-auto flex justify-between items-center">
         <a href="/" className="text-black text-xl font-bold">
           <div className="flex items-center gap-2">
@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
           <a href="/" className="text-black hover:text-blue-300">
             ABOUT ME
           </a>
-          <a href="/about" className="text-black hover:text-blue-300">
+          <a href="/Resume" className="text-black hover:text-blue-300">
             RESUME
           </a>
           <a href="/projects" className="text-black hover:text-blue-300">
