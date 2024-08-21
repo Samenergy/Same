@@ -39,14 +39,14 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-[#ccd0cf] mt-16">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-[#ccd0cf] mt-16 px-4">
       <h2 className="text-3xl font-bold mb-6 text-center">
         <span className="text-blue-600">■</span> Let's talk
       </h2>
-      <div className="w-full max-w-lg bg-white p-8 rounded shadow-md">
+      <div className="w-full max-w-md bg-white p-8 rounded shadow-md">
         <form onSubmit={handleSubmit}>
-          <div className="flex space-x-4 mb-4">
-            <div className="w-1/2">
+          <div className="flex flex-col md:flex-row md:space-x-4 mb-4">
+            <div className="w-full md:w-1/2 mb-4 md:mb-0">
               <label className="block mb-1 font-medium">First Name *</label>
               <input
                 type="text"
@@ -57,7 +57,7 @@ const ContactForm: React.FC = () => {
                 required
               />
             </div>
-            <div className="w-1/2">
+            <div className="w-full md:w-1/2">
               <label className="block mb-1 font-medium">Last Name *</label>
               <input
                 type="text"
