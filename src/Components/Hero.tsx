@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
           <div className="flex flex-col items-center">
             <div>
               <img
-                src="/IMG_2755.jpeg"
+                src="/IMG_5322-transformed.jpeg"
                 alt="Samuel Dushime"
                 className="w-[150px] md:w-[200px] rounded-full h-auto mb-4"
               />
