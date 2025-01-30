@@ -7,11 +7,13 @@ const Experience: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-6">
           <h3 className="text-2xl font-bold">Experience</h3>
           <a
-            href="#"
-            className="text-lg font-semibold bg-blue-500 px-4 py-2 rounded-full text-white hover:text-black hover:bg-transparent hover:border border-blue-500 transition duration-300"
-          >
-            Download CV
-          </a>
+  href="/SamuelDushime.pdf"
+  download
+  className="text-lg font-semibold bg-blue-500 px-4 py-2 rounded-full text-white hover:text-black hover:bg-transparent hover:border border-blue-500 transition duration-300"
+>
+  Download CV
+</a>
+
         </div>
         <section className="bg-white rounded-lg shadow-lg p-6 md:p-10 flex flex-col md:flex-row gap-6">
           <div className="w-full md:w-1/3">
