@@ -4,8 +4,8 @@ import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 const Hero: React.FC = () => {
   return (
     <div className="relative flex flex-col md:flex-row min-h-screen">
-      <div className="w-full md:w-2/5 h-[300px] md:h-[800px] bg-[#253745]"></div>
-      <div className="w-full md:w-4/5 h-[300px] md:h-[800px] min-h-screen bg-[#CCD0CF]"></div>
+<div className="w-full md:w-2/5 min-h-[300px] md:min-h-[800px] h-auto bg-[#253745]"></div>
+<div className="w-full md:w-4/5 h-[300px] md:h-[800px] min-h-screen bg-[#CCD0CF]"></div>
 
       <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-center mt-20 md:mt-0">
         <div className="bg-[#4A5C6A] p-8 rounded-t-lg md:rounded-l-lg md:rounded-r-none border-lg shadow-lg max-w-lg">
