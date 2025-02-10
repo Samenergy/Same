@@ -29,7 +29,7 @@ const Others: React.FC = () => {
                   </li>
                   <li className="flex items-center mb-4">
                     <FaSquare className="text-blue-500 mr-2" />
-                    <b>ML:</b> NumPy, Pandas, Scikit-learn, NLP, Predictive Analytics
+                    Machine Learning
                   </li>
                 </ul>
               </div>
