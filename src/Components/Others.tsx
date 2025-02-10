@@ -13,23 +13,23 @@ const Others: React.FC = () => {
                 <ul className="list-none text-gray-700">
                   <li className="flex items-center mb-4">
                     <FaSquare className="text-blue-500 mr-2" />
-                    Proficiency in JavaScript and Python
+                    Python, JavaScript (ES6+), TypeScript, HTML, CSS
                   </li>
                   <li className="flex items-center mb-4">
                     <FaSquare className="text-blue-500 mr-2" />
-                    Web Development (React)
+                    React.js, Next.js, Tailwind CSS, Typebot
                   </li>
                   <li className="flex items-center mb-4">
                     <FaSquare className="text-blue-500 mr-2" />
-                    Database Management
+                    Django, DRF, Node.js, Express.js, FastAPI
                   </li>
                   <li className="flex items-center mb-4">
                     <FaSquare className="text-blue-500 mr-2" />
-                    Version Control (Git)
+                    PostgreSQL, MySQL, MongoDB, Firebase
                   </li>
                   <li className="flex items-center mb-4">
                     <FaSquare className="text-blue-500 mr-2" />
-                    APIs and Web Services
+                    <b>Machine Learning:</b> NumPy, Pandas, Scikit-learn, NLP, Predictive Analytics
                   </li>
                 </ul>
               </div>
@@ -37,11 +37,11 @@ const Others: React.FC = () => {
                 <ul className="list-none text-gray-700">
                   <li className="flex items-center mb-4">
                     <FaSquare className="text-blue-500 mr-2" />
-                    Software Dev. Methodologies
+                    Problem-Solving & Debugging
                   </li>
                   <li className="flex items-center mb-4">
                     <FaSquare className="text-blue-500 mr-2" />
-                    Testing and Debugging
+                    Team Collaboration & Communication
                   </li>
                   <li className="flex items-center mb-4">
                     <FaSquare className="text-blue-500 mr-2" />
@@ -53,7 +53,7 @@ const Others: React.FC = () => {
                   </li>
                   <li className="flex items-center mb-4">
                     <FaSquare className="text-blue-500 mr-2" />
-                    Work Independently
+                    Basic Graphic Design
                   </li>
                 </ul>
               </div>
