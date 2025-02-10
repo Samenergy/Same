@@ -16,7 +16,7 @@ const Education: React.FC = () => {
           </div>
           <div className="w-full md:w-2/3">
             <p className="text-gray-700">
-              Currently in my second year, focusing on machine learning. I've
+              Currently in my final year, focusing on machine learning. I've
               also gained extensive knowledge in full-stack web development and
               mobile application development, working on various projects that
               have sharpened my skills in these areas.
