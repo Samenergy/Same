@@ -12,9 +12,9 @@ const Hero: React.FC = () => {
           <div className="flex flex-col items-center">
             <div>
               <img
-                src="/IMG_5322-transformed.jpeg"
+                src="/IMG_5317.JPG"
                 alt="Samuel Dushime"
-                className="w-[150px] md:w-[200px] rounded-full h-auto mb-4"
+                className="w-[200px] md:w-[200px] rounded-full h-auto mb-4"
               />
             </div>
             <div className="text-white text-center text-xl md:text-2xl font-semibold mb-2">

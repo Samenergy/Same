@@ -20,7 +20,7 @@ const ProjectsSection: React.FC = () => {
           </div>
           <p className="text-gray-600 mt-4">
             HealthSync Rwanda is a cutting-edge solution designed to modernize
-            record management in Rwanda’s healthcare system. By combining
+            record management in Rwanda's healthcare system. By combining
             thorough research, innovative technology, and collaboration with
             healthcare professionals, we created a user-friendly system that
             enhances patient care, streamlines data storage, and automates
@@ -95,6 +95,88 @@ const ProjectsSection: React.FC = () => {
             className="w-full h-auto object-cover"
             src="/Cloud analytic logo design template (1).gif"
             alt="Project thumbnail"
+          />
+        </div>
+      </div>
+
+      <div className="mt-20 max-w-3xl mx-auto bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row">
+        <div className="p-6 md:p-10 w-full md:w-2/3">
+          <div className="border-l-8 border-[#000000] pl-4 md:pl-8 -ml-4 md:-ml-10">
+            <h3 className="text-lg md:text-xl font-bold text-[#000000]">
+              LeafSense
+            </h3>
+            <p className="text-gray-700">Project Overview</p>
+          </div>
+          <p className="text-gray-600 mt-4">
+            AI-powered platform for detecting plant diseases from leaf images using CNNs.
+            •Compared ML algorithms and neural networks for accuracy and efficiency.
+            •Built end-to-end ML pipeline and deployed a working web app.
+          </p>
+          <div className="mt-6 flex space-x-6 md:space-x-10 text-4xl md:text-6xl">
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-[#000000]"
+            >
+              <FaGithub size={30} />
+            </a>
+            <a
+              href="https://leafsense.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-[#000000]"
+            >
+              <FaGlobe size={30} />
+            </a>
+          </div>
+        </div>
+        <div className="w-full md:w-1/3 bg-[#000000]">
+          <img
+            className="w-full h-auto object-cover"
+            src="/leafsense.gif"
+            alt="Plant Disease Detection Project"
+          />
+        </div>
+      </div>
+
+      <div className="mt-20 max-w-3xl mx-auto bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row">
+        <div className="p-6 md:p-10 w-full md:w-2/3">
+          <div className="border-l-8 border-[#c1ff72] pl-4 md:pl-8 -ml-4 md:-ml-10">
+            <h3 className="text-lg md:text-xl font-bold text-[#c1ff72]">
+              FarmLink
+            </h3>
+            <p className="text-gray-700">Project Overview</p>
+          </div>
+          <p className="text-gray-600 mt-4">
+            An agri-tech mobile app to connect farmers with buyers and suppliers.
+            •Backend includes Google OAuth, JWT, and secure user registration and login.
+            •Completed full-stack implementation including frontend integration and deployment.
+          </p>
+          <div className="mt-6 flex space-x-6 md:space-x-10 text-4xl md:text-6xl">
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-[#c1ff72]"
+            >
+              <FaGithub size={30} />
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:text-[#c1ff72]"
+            >
+              <FaGlobe size={30} />
+            </a>
+          </div>
+        </div>
+        <div className="w-full md:w-1/3 bg-[#c1ff72]">
+          <img
+            className="w-full h-auto object-cover"
+            src="/farmlink.gif"
+            alt="FarmLink Project"
           />
         </div>
       </div>
