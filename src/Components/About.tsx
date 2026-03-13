@@ -48,7 +48,7 @@ const About: React.FC<Props> = ({ scrollProgress }) => {
       >
         {/* Animated Ghost Text in Background */}
         <motion.div
-          style={{ x: bgTextX, font }}
+          style={{ x: bgTextX, fontFamily: font.fontFamily }}
           className="absolute top-1/2 -translate-y-1/2 whitespace-nowrap text-[30vh] text-slate-900 select-none z-0"
         >
           SCALABLE CLOUD BACKEND AI DATA

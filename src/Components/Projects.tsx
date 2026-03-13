@@ -25,7 +25,6 @@ interface Props {
 const Projects: React.FC<Props> = ({ scrollProgress }) => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
-  const [taglinePos, setTaglinePos] = useState({ x: 0, y: 0 });
 
   const font = { fontFamily: "'Changa One', cursive" };
   const slate = "#64748b";
@@ -130,9 +129,8 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
 
   useLayoutEffect(() => {
     const measure = () => {
+      // Keeping ref for potential future use
       if (!taglineRef.current) return;
-      const rect = taglineRef.current.getBoundingClientRect();
-      setTaglinePos({ x: rect.left, y: rect.top });
     };
     measure();
     window.addEventListener("resize", measure);
@@ -260,11 +258,11 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
             key="details"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="absolute inset-0 bg-white z-[150] flex p-16 gap-16 items-center"
+            className="absolute inset-0 bg-white z-150 flex p-16 gap-16 items-center"
           >
             <button
               onClick={() => setSelectedId(null)}
-              className="absolute top-10 right-16 text-slate-600 font-black text-2xl z-[200]"
+              className="absolute top-10 right-16 text-slate-600 font-black text-2xl z-200"
               style={font}
             >
               CLOSE [X]
