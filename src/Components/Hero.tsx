@@ -1,82 +1,131 @@
-import React from "react";
-import { FaLinkedinIn, FaGithub } from "react-icons/fa";
+// src/components/Hero.tsx
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useTransform, MotionValue } from "framer-motion";
 
-const Hero: React.FC = () => {
+interface Props {
+  scrollProgress: MotionValue<number>;
+}
+
+const TARGET_FIRST_LINE = "Life?*";
+const TARGET_SECOND_LINE = "Very Simple";
+
+const Hero: React.FC<Props> = ({ scrollProgress }) => {
+  const [firstLine, setFirstLine] = useState("");
+  const [secondLine, setSecondLine] = useState("");
+  const dotRef = useRef<HTMLSpanElement>(null);
+  const [dotPos, setDotPos] = useState({ x: 0, y: 0 });
+
+  // Typing (Hook 5)
+  useEffect(() => {
+    let i = 0;
+    const t1 = setInterval(() => {
+      if (i <= TARGET_FIRST_LINE.length) setFirstLine(TARGET_FIRST_LINE.slice(0, i++));
+      else {
+        clearInterval(t1);
+        let j = 0;
+        const t2 = setInterval(() => {
+          if (j <= TARGET_SECOND_LINE.length) setSecondLine(TARGET_SECOND_LINE.slice(0, j++));
+          else clearInterval(t2);
+        }, 100);
+      }
+    }, 130);
+  }, []);
+
+  // Measure dot (Hook 6)
+  useEffect(() => {
+    if (secondLine !== TARGET_SECOND_LINE || !dotRef.current) return;
+    
+    const measure = () => {
+      const rect = dotRef.current!.getBoundingClientRect();
+      setDotPos({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+    };
+
+    measure();
+    window.addEventListener('resize', measure);
+
+    return () => window.removeEventListener('resize', measure);
+
+  }, [secondLine]);
+
+  // --- UNCONDITIONAL HOOK CALLS START HERE ---
+
+  // Circle explosion transforms
+  const size = useTransform(scrollProgress, [0, 1], [10, 6000]); 
+  const x = useTransform(scrollProgress, [0, 0.4], [dotPos.x || innerWidth / 2, innerWidth / 2]);
+  const y = useTransform(scrollProgress, [0, 0.4], [dotPos.y || innerHeight / 2, innerHeight / 2]);
+  
+  // Hero content fade out
+  const heroOpacity = useTransform(scrollProgress, [0.4, 0.5], [1, 0]);
+
+  // 🚨 FIXED HOOK CALL: Mask fade out must be defined here, unconditionally
+  const maskOpacity = useTransform(scrollProgress, [0.35, 0.45], [1, 0]);
+
   return (
-    <div className="relative flex flex-col md:flex-row min-h-screen">
-<div className="w-full md:w-2/5 min-h-[300px] md:min-h-[800px] h-auto bg-[#253745]"></div>
-<div className="w-full md:w-4/5 h-[300px] md:h-[800px] min-h-screen bg-[#CCD0CF]"></div>
+    <>
+      {/* SLATE FLASH (z-50) */}
+      {/* The component is still conditionally rendered, but all its hooks are defined above */}
+      {dotPos.x > 0 && ( 
+        <motion.div
+          className="fixed left-0 top-6 rounded-full bg-slate-950 pointer-events-none z-50"
+          style={{
+            width: size,
+            height: size,
+            x,
+            y,
+            opacity: maskOpacity, // Use the new, unconditionally defined MotionValue
+            translateX: "-50%",
+            translateY: "-50%",
+          }}
+        />
+      )}
 
-      <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-center mt-20 md:mt-0">
-        <div className="bg-[#4A5C6A] p-8 rounded-t-lg md:rounded-l-lg md:rounded-r-none border-lg shadow-lg max-w-lg">
-          <div className="flex flex-col items-center">
-            <div>
-              <img
-                src="/IMG_5317.JPG"
-                alt="Samuel Dushime"
-                className="w-[200px] md:w-[200px] rounded-full h-auto mb-4"
-              />
-            </div>
-            <div className="text-white text-center text-xl md:text-2xl font-semibold mb-2">
-              Samuel <br /> Dushime
-            </div>
-            <div className="text-white text-center text-lg font-light mb-2">
-              —————
-            </div>
-            <div className="text-white text-lg font-light mb-6 tracking-widest">
-              SOFTWARE ENGINEER
-            </div>
-            <div className="w-full py-2 flex justify-center space-x-4">
-              <a
-                href="https://www.linkedin.com/in/samuel-dushime-47a927278/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedinIn className="text-xl md:text-2xl text-gray-50 hover:text-[#06141B] duration-300" />
-              </a>
-              <a
-                href="https://github.com/Samenergy"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub className="text-xl md:text-2xl text-gray-50 hover:text-[#06141B] duration-300" />
-              </a>
-            </div>
-          </div>
+      {/* HERO CONTENT (The layer that acts as the peelable mask) */}
+      <motion.div
+        className="fixed inset-0 z-40 bg-gray-50 pointer-events-auto flex flex-col"
+        style={{ opacity: heroOpacity }} // Fades to zero opacity
+      >
+        {/* Logo */}
+        <div className="absolute top-8 left-8">
+          <img src="/logo.png" alt="logo" className="h-12" />
         </div>
 
-        <div className="bg-white p-8 border border-lg rounded-b-lg md:rounded-r-lg md:rounded-l-none shadow-lg max-w-lg">
-          <div className="mb-6 text-center md:text-left">
-            <p className="text-5xl md:text-8xl font-bold mb-2">Hello</p>
-            <p className="text-xl md:text-2xl mb-6">
-              Here's who I am & what I do
-            </p>
-            <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-6">
-              <a href="/Resume" rel="noopener noreferrer">
-                <button className="bg-blue-500 text-white px-5 py-2 rounded-full hover:border border-blue-500 hover:bg-white hover:text-black duration-500">
-                  Resume
-                </button>
-              </a>
-
-              <a href="/Projects" rel="noopener noreferrer">
-                <button className="bg-blue-500 text-white px-5 py-2 rounded-full hover:border border-blue-500 hover:bg-white hover:text-black duration-500">
-                  Projects
-                </button>
-              </a>
+        {/* Text */}
+        <div className="flex-1 flex items-center justify-between px-16 lg:px-32 xl:px-80">
+          <h1 className="text-7xl lg:text-7xl font-bold leading-none">
+            <div>– {firstLine}</div>
+            <div className="mt-8">
+              – {secondLine} 
+              
+              {/* FINAL SLATE DOT WITH PERIOD-LIKE POSITIONING */}
+              {secondLine === TARGET_SECOND_LINE && (
+                <span 
+                  ref={dotRef} 
+                  className="text-slate-950 text-[100px] font-black leading-none inline-block 
+                             ml-[-8px] relative top-[0px] "
+                >
+                  .
+                </span>
+              )}
             </div>
-          </div>
-          <p className="font-light text-center md:text-left">
-            I am a passionate Software Engineering student, I excel in
-            problem-solving and crafting innovative solutions. My strong
-            organizational skills, attention to detail, and efficient time
-            management enable me to thrive in dynamic environments and deliver
-            exceptional results. <br /> With a proactive mindset and technical
-            expertise, I am equipped to tackle complex challenges and contribute
-            significantly to the evolving world of technology.
-          </p>
+          </h1>
+
+          {/* Nav */}
+          <nav className="hidden lg:block text-2xl font-light space-y-8 text-right">
+            {["Home", "We are", "Partners", "Projects", "Get in touch"].map((t) => (
+              <motion.a key={t} href="#" whileHover={{ x: -20 }} className="block hover:text-slate-600">
+                {t}
+              </motion.a>
+            ))}
+          </nav>
         </div>
-      </div>
-    </div>
+
+        <div className="px-16 lg:px-32 xl:px-80 pb-20 text-lg text-gray-600">
+          <p>Life* is complicated enough.</p>
+          <p>Let's add clarity, ease, structure and a bit of fun.</p>
+          <p>No extra noise. Just what matters.</p>
+        </div>
+      </motion.div>
+    </>
   );
 };
 

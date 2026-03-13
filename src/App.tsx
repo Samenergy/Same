@@ -1,34 +1,45 @@
-import React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import "./index.css";
-import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
+// src/App.tsx (No changes required)
+import { motion, useScroll, useTransform } from "framer-motion";
+import Hero from "./Components/Hero";
+import About from "./Components/About";
+import Projects from "./Components/Projects";
 
-import Home from "./Components/Home";
-import Resume from "./Components/Resume";
-import ProjectsSection from "./Components/Projects";
-import ContactForm from "./Components/Contact";
+export default function App() {
+  // This makes the page tall enough so you can actually scroll
+  const { scrollYProgress } = useScroll();
 
-const App: React.FC = () => {
-  const location = useLocation();
+  const aboutScrollProgress = useTransform(scrollYProgress, [1 / 4, 3 / 4], [0, 1]);
+  const whatWeDoScrollProgress = useTransform(
+    scrollYProgress,
+    [3 / 4, 1],
+    [0, 1]
+  );
+
+  const heroZIndex = useTransform(scrollYProgress, [0, 1 / 4], [30, 0]);
+  const aboutZIndex = useTransform(scrollYProgress, [1 / 4, 3 / 4], [30, 0]);
+  const whatWeDoZIndex = useTransform(scrollYProgress, [3 / 4, 1], [30, 0]);
+
+  const heroOpacity = useTransform(scrollYProgress, [0.22, 0.25], [1, 0]);
+  const aboutOpacity = useTransform(scrollYProgress, [0.25, 0.28, 0.85, 0.9], [0, 1, 1, 0]);
+  const whatWeDoOpacity = useTransform(scrollYProgress, [0.9, 0.95], [0, 1]);
 
   return (
-    <div className="overflow-y-auto">
-      <Navbar />
-      <TransitionGroup>
-        <CSSTransition key={location.key} classNames="fade" timeout={300}>
-          <Routes location={location}>
-            <Route path="/" element={<Home />} />
-            <Route path="/Resume" element={<Resume />} />
-            <Route path="/Projects" element={<ProjectsSection />} />
-            <Route path="/Contact" element={<ContactForm />} />
-          </Routes>
-        </CSSTransition>
-      </TransitionGroup>
-      <Footer />
-    </div>
-  );
-};
+    <>
+      {/* This invisible div creates scrollable height */}
+      <div className="h-[1000vh]" />
 
-export default App;
+      {/* ← 3× screen height = plenty of scroll */}
+      <div className="sticky top-0 h-screen">
+        <motion.div style={{ zIndex: heroZIndex, opacity: heroOpacity }}>
+          <Hero scrollProgress={scrollYProgress} />
+        </motion.div>
+        <motion.div style={{ zIndex: aboutZIndex, opacity: aboutOpacity }}>
+          <About scrollProgress={aboutScrollProgress} />
+        </motion.div>
+        <motion.div style={{ zIndex: whatWeDoZIndex, opacity: whatWeDoOpacity }}>
+          <Projects scrollProgress={whatWeDoScrollProgress} />
+        </motion.div>
+      </div>
+    </>
+  );
+}
