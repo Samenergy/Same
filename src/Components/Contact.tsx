@@ -60,7 +60,7 @@ const Contact: React.FC<Props> = ({ scrollProgress }) => {
             {/* Download CV */}
             <div className="flex flex-wrap items-center gap-4">
               <a
-                href="/Samuel_Dushime_CV.pdf"
+                href="/Samuel-Dushimeresss.pdf"
                 download
                 className="inline-flex items-center px-6 py-3 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-full transition-colors"
               >

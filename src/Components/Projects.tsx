@@ -32,7 +32,13 @@ const skillCategories = [
     icon: "",
     color: "#FFFFFF",
     accent: "#64748b",
-    skills: ["Python (Django, FastAPI)", "Node.js", "Express.js", ".Net", "RESTful APIs"],
+    skills: [
+      "Python (Django, FastAPI)",
+      "Node.js",
+      "Express.js",
+      ".Net",
+      "RESTful APIs",
+    ],
   },
   {
     id: 2,
@@ -40,7 +46,14 @@ const skillCategories = [
     icon: "",
     color: "#0f172a",
     accent: "#38bdf8",
-    skills: ["React.js", "TypeScript", "Next.js", "Tailwind CSS", "JavaScript", "HTML/CSS"],
+    skills: [
+      "React.js",
+      "TypeScript",
+      "Next.js",
+      "Tailwind CSS",
+      "JavaScript",
+      "HTML/CSS",
+    ],
   },
   {
     id: 3,
@@ -48,7 +61,17 @@ const skillCategories = [
     icon: "",
     color: "#FFFFFF",
     accent: "#64748b",
-    skills: ["TensorFlow", "Keras", "PyTorch", "NLP", "CNNs", "RNNs", "Reinforcement Learning", "AI Agents", "Automation"],
+    skills: [
+      "TensorFlow",
+      "Keras",
+      "PyTorch",
+      "NLP",
+      "CNNs",
+      "RNNs",
+      "Reinforcement Learning",
+      "AI Agents",
+      "Automation",
+    ],
   },
   {
     id: 4,
@@ -56,7 +79,15 @@ const skillCategories = [
     icon: "",
     color: "#0f172a",
     accent: "#38bdf8",
-    skills: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Prisma", "Supabase", "Firebase"],
+    skills: [
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "Redis",
+      "Prisma",
+      "Supabase",
+      "Firebase",
+    ],
   },
   {
     id: 5,
@@ -64,7 +95,16 @@ const skillCategories = [
     icon: "",
     color: "#FFFFFF",
     accent: "#64748b",
-    skills: ["Docker", "AWS", "Azure", "Kubernetes", "Hetzner", "Digital Ocean", "Railway", "Git"],
+    skills: [
+      "Docker",
+      "AWS",
+      "Azure",
+      "Kubernetes",
+      "Hetzner",
+      "Digital Ocean",
+      "Railway",
+      "Git",
+    ],
   },
   {
     id: 6,
@@ -72,7 +112,14 @@ const skillCategories = [
     icon: "",
     color: "#0f172a",
     accent: "#38bdf8",
-    skills: ["Flutter", "Typebot", "WhatsApp Business API", "Postman", "Linux", "Locust"],
+    skills: [
+      "Flutter",
+      "Typebot",
+      "WhatsApp Business API",
+      "Postman",
+      "Linux",
+      "Locust",
+    ],
   },
 ];
 
@@ -110,7 +157,14 @@ const SkillCard: React.FC<{
     >
       {/* Header */}
       <div className="flex items-center gap-3">
-        <span style={{ ...font, color: cat.accent, fontSize: "2rem", lineHeight: 1 }}>
+        <span
+          style={{
+            ...font,
+            color: cat.accent,
+            fontSize: "2rem",
+            lineHeight: 1,
+          }}
+        >
           {cat.icon}
         </span>
         <h3
@@ -159,7 +213,7 @@ const Skills: React.FC<{ scrollProgress: MotionValue<number> }> = ({
   // FIX: disable pointer events when panel is off-screen so it doesn't block project clicks
   const panelPointerEvents = useTransform(
     scrollProgress,
-    (v) => (v < 0.87 ? "none" : "auto") as "none" | "auto"
+    (v) => (v < 0.87 ? "none" : "auto") as "none" | "auto",
   );
 
   const headingY = useTransform(scrollProgress, [0.9, 1.0], [40, 0]);
@@ -193,7 +247,10 @@ const Skills: React.FC<{ scrollProgress: MotionValue<number> }> = ({
           style={{ y: headingY, opacity: headingOpacity }}
           className="flex items-center gap-6 mb-14"
         >
-          <div className="w-12 h-12 rounded-full" style={{ backgroundColor: slate }} />
+          <div
+            className="w-12 h-12 rounded-full"
+            style={{ backgroundColor: slate }}
+          />
           <div>
             <h2
               style={{ ...font, color: slate }}
@@ -241,45 +298,41 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
       id: 1,
       label: "I.N.S.P.I.R.E.",
       color: "#FFFFFF",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bbbda5366391?q=80&w=800",
+      image: "inss.png",
       explanation:
-        "An AI-driven platform for businesses in Rwanda focusing on NLP for partner identification.",
-      link: "#",
+        "The I.N.S.P.I.R.E. project (Intelligent Network System for Partnerships, Insights, Research & Expansion) is an ambitious initiative designed to bridge the digital divide for small and medium-sized enterprises (SMEs) in Rwanda. By transforming complex data science into a practical, accessible tool, it empowers local businesses to compete in a data-driven market without the prohibitive costs of high-end analytical software.",
+      link: "https://inspire.software/",
       tech: "Python / Django / NLP",
     },
     {
       id: 2,
       label: "Kiota Poultry",
-      color: "#000000",
-      image:
-        "https://images.unsplash.com/photo-1516383740770-fbcc5c24770d?q=80&w=800",
+      color: "#ccd0cf",
+      image: "/kiota.png",
       explanation:
-        "A management software project dedicated to poultry farming data and tracking.",
-      link: "#",
+        "Kiota Poultry uses smart technology and real-time monitoring to help farmers protect their birds, greenuce losses, and improve farm performance. Our IoT-powegreen system gives you full visibility and control, turning everyday farm data into better decisions and stronger growth.",
+      link: "https://kiota-rho.vercel.app/",
       tech: "React / Vite / Tailwind",
     },
     {
       id: 3,
-      label: "OpenClaw AI",
-      color: "#38bdf8",
-      image:
-        "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800",
+      label: "Kira",
+      color: "#FFFFFF",
+      image: "image copy.png",
       explanation:
-        "Configuring autonomous AI agents and local LLMs using terminal-based automation and Ollama.",
+        "Kira was developed to modernize the country’s outdated healthcare record management through research-driven innovation. By collaborating directly with medical professionals, we designed a secure, user-friendly platform that automates critical tasks like insurance claims processing, patient care tracking, and data reporting. This iterative, stakeholder-focused approach transformed complex administrative pain points into an efficient system that empowers providers and directly improves patient outcomes.",
       link: "#",
-      tech: "Ollama / Qwen2.5 / Automation",
+      tech: "React / Nodejs / Railway",
     },
     {
       id: 4,
-      label: "AI Backend",
+      label: "LeafSense",
       color: "#64748b",
-      image:
-        "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?q=80&w=800",
+      image: "leaf.png",
       explanation:
-        "Developing RESTful APIs with JWT/OAuth and optimizing databases for high-performance applications.",
-      link: "#",
-      tech: "Node.js / Azure / AWS",
+        "LeafSense uses advanced AI technology to instantly identify plant diseases from simple leaf photos. Our system helps farmers, gardeners, and agricultural professionals detect problems early, reduce crop losses, and implement targeted treatments for healthier plants.",
+      link: "https://leafsense.vercel.app/",
+      tech: "Django / React / Railway",
     },
     {
       id: 5,
@@ -297,39 +350,31 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
 
   const otherProjects = [
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack online shopping platform with payment integration",
-      tech: "Next.js / Stripe / PostgreSQL",
-      link: "#",
+      title: "Powerlytics",
+      description:
+        "Tracks electricity usage in households and predicts future consumption costs using ML models.",
+      tech: "React / Python / IOT",
+      link: "https://powerlytics-ui.vercel.app/",
     },
     {
-      title: "Task Management App",
-      description: "Collaborative project management tool with real-time updates",
-      tech: "React / Node.js / Socket.io",
-      link: "#",
+      title: "SmartBin IoT",
+      description:
+        "Developed an IoT-enabled smart waste management system that monitors bin levels and optimizes collection routes",
+      tech: "React / Nodejs / MongoDB",
+      link: "https://smart-bin-sigma.vercel.app/",
     },
     {
-      title: "Weather Dashboard",
-      description: "Real-time weather monitoring with predictive analytics",
-      tech: "Vue.js / Python / TensorFlow",
-      link: "#",
+      title: "FarmLink Project",
+      description:
+        "Connects farmers with marketplaces and provides predictive insights on crop yield and demand using ML..",
+      tech: "Flutter / Firebase ",
+      link: "https://github.com/Samenergy/Farmlink",
     },
     {
-      title: "Social Media Analytics",
-      description: "Data visualization tool for social media metrics",
-      tech: "React / D3.js / MongoDB",
-      link: "#",
-    },
-    {
-      title: "Learning Management System",
-      description: "Educational platform with video streaming and assessments",
-      tech: "Angular / Django / AWS",
-      link: "#",
-    },
-    {
-      title: "Fitness Tracking App",
-      description: "Mobile app for workout planning and progress tracking",
-      tech: "React Native / Firebase / Redux",
+      title: "ML Recruitment Platform",
+      description:
+        "ML Recruitment Platform predicts candidate-job fit using NLP and predictive analytics, automating recruitment processes for SMEs.",
+      tech: "Next.js / Django / PostgreSQL",
       link: "#",
     },
   ];
@@ -378,7 +423,10 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
   return (
     <>
       {/* ── Projects layer ── */}
-      <div className="fixed inset-0 bg-white overflow-hidden">
+      <div
+        className="fixed inset-0 bg-white overflow-hidden"
+        style={{ zIndex: 50 }}
+      >
         <MinimizableNav />
 
         <AnimatePresence mode="wait">
