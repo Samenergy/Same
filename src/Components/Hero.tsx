@@ -55,14 +55,16 @@ const Hero: React.FC<Props> = ({ scrollProgress }) => {
 
   // Circle explosion transforms
   const size = useTransform(scrollProgress, [0, 1], [10, 6000]);
-  const x = useTransform(scrollProgress, [0, 0.4], [
-    dotPos.x || innerWidth / 2,
-    innerWidth / 2,
-  ]);
-  const y = useTransform(scrollProgress, [0, 0.4], [
-    dotPos.y || innerHeight / 2,
-    innerHeight / 2,
-  ]);
+  const x = useTransform(
+    scrollProgress,
+    [0, 0.4],
+    [dotPos.x || innerWidth / 2, innerWidth / 2],
+  );
+  const y = useTransform(
+    scrollProgress,
+    [0, 0.4],
+    [dotPos.y || innerHeight / 2, innerHeight / 2],
+  );
 
   // Hero content fade out
   const heroOpacity = useTransform(scrollProgress, [0.4, 0.5], [1, 0]);
@@ -73,7 +75,7 @@ const Hero: React.FC<Props> = ({ scrollProgress }) => {
   // Disable pointer events on Hero layer once it has faded out so it doesn't block Projects clicks
   const heroPointerEvents = useTransform(
     scrollProgress,
-    (v) => (v >= 0.5 ? "none" : "auto") as "none" | "auto"
+    (v) => (v >= 0.5 ? "none" : "auto") as "none" | "auto",
   );
 
   return (
@@ -100,9 +102,15 @@ const Hero: React.FC<Props> = ({ scrollProgress }) => {
         className="fixed inset-0 z-40 bg-gray-50 pointer-events-auto flex flex-col"
         style={{ opacity: heroOpacity, pointerEvents: heroPointerEvents }} // Fades out and then stops catching clicks
       >
-        {/* Logo */}
-        <div className="absolute top-8 left-8">
-          <img src="/logo.png" alt="logo" className="h-12" />
+        {/* Logo text */}
+        <div
+          className="
+            absolute top-4 left-4
+            text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+            font-bold tracking-wide text-slate-900
+          "
+        >
+          Samuel Dushime
         </div>
 
         {/* Text */}
@@ -111,7 +119,6 @@ const Hero: React.FC<Props> = ({ scrollProgress }) => {
             <div>– {firstLine}</div>
             <div className="mt-8">
               – {secondLine}
-
               {/* FINAL SLATE DOT WITH PERIOD-LIKE POSITIONING */}
               {secondLine === TARGET_SECOND_LINE && (
                 <span
@@ -137,7 +144,7 @@ const Hero: React.FC<Props> = ({ scrollProgress }) => {
                 >
                   {t}
                 </motion.a>
-              )
+              ),
             )}
           </nav>
         </div>
