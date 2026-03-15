@@ -312,7 +312,7 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
       explanation:
         "Kiota Poultry uses smart technology and real-time monitoring to help farmers protect their birds, greenuce losses, and improve farm performance. Our IoT-powegreen system gives you full visibility and control, turning everyday farm data into better decisions and stronger growth.",
       link: "https://kiota-rho.vercel.app/",
-      tech: "React / Vite / Tailwind",
+      tech: "React / Flutter / IOT",
     },
     {
       id: 3,
