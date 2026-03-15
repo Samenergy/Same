@@ -37,7 +37,7 @@ const About: React.FC<Props> = ({ scrollProgress }) => {
         <span className="text-sky-600 font-bold tracking-[0.5em] mb-4 uppercase">Software Engineer</span>
         <h1 style={font} className="text-7xl md:text-9xl text-slate-900 text-center leading-[0.85]">
           ENGINEERING <br /> SOLUTIONS <br /> 
-          <span className="text-slate-400">WITH AI.</span>
+          <span className="text-slate-400">THAT MATTERS.</span>
         </h1>
       </motion.div>
 
