@@ -17,7 +17,7 @@ const MinimizableNav: React.FC = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const navItems = ["Home", "We are", "Partners", "Projects", "Get in touch"];
+  const navItems = ["Home", "We are","Projects", "Skills",  "Get in touch"];
 
   return (
     <>

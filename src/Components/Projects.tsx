@@ -86,7 +86,6 @@ const SkillCard: React.FC<{
 }> = ({ cat, index, scrollProgress }) => {
   const font = { fontFamily: "'Changa One', cursive" };
 
-  // Each card staggers in from bottom with slower transition 0.92 → 1.0
   const startIn = 0.92 + index * 0.02;
   const endIn = Math.min(startIn + 0.05, 1.0);
 
@@ -101,17 +100,17 @@ const SkillCard: React.FC<{
 
   return (
     <motion.div
-      style={{ y: cardY, opacity: cardOpacity }}
+      style={{
+        y: cardY,
+        opacity: cardOpacity,
+        backgroundColor: cat.color,
+        borderColor,
+      }}
       className="rounded-[28px] p-7 flex flex-col gap-5 border"
-      css-background={cat.color}
-      // inline style for background since Tailwind can't use dynamic values here
-      {...{ style: { y: cardY, opacity: cardOpacity, backgroundColor: cat.color, borderColor } }}
     >
       {/* Header */}
       <div className="flex items-center gap-3">
-        <span
-          style={{ ...font, color: cat.accent, fontSize: "2rem", lineHeight: 1 }}
-        >
+        <span style={{ ...font, color: cat.accent, fontSize: "2rem", lineHeight: 1 }}>
           {cat.icon}
         </span>
         <h3
@@ -123,10 +122,7 @@ const SkillCard: React.FC<{
       </div>
 
       {/* Divider */}
-      <div
-        className="h-px w-full"
-        style={{ backgroundColor: borderColor }}
-      />
+      <div className="h-px w-full" style={{ backgroundColor: borderColor }} />
 
       {/* Skill Tags */}
       <div className="flex flex-wrap gap-2">
@@ -157,18 +153,30 @@ const Skills: React.FC<{ scrollProgress: MotionValue<number> }> = ({
   const font = { fontFamily: "'Changa One', cursive" };
   const slate = "#64748b";
 
-  // The whole skills panel slides up from off-screen with slower transition 0.88 → 1.0
   const panelY = useTransform(scrollProgress, [0.88, 1.0], ["100vh", "0vh"]);
   const panelOpacity = useTransform(scrollProgress, [0.88, 0.98], [0, 1]);
 
-  // Heading animates in more gradually
-  const headingY = useTransform(scrollProgress, [0.90, 1.0], [40, 0]);
-  const headingOpacity = useTransform(scrollProgress, [0.90, 1.0], [0, 1]);
+  // FIX: disable pointer events when panel is off-screen so it doesn't block project clicks
+  const panelPointerEvents = useTransform(
+    scrollProgress,
+    (v) => (v < 0.87 ? "none" : "auto") as "none" | "auto"
+  );
+
+  const headingY = useTransform(scrollProgress, [0.9, 1.0], [40, 0]);
+  const headingOpacity = useTransform(scrollProgress, [0.9, 1.0], [0, 1]);
 
   return (
     <motion.div
-      style={{ y: panelY, opacity: panelOpacity }}
-      className="fixed inset-0 bg-slate-50 z-[120] overflow-y-auto"
+      style={{
+        y: panelY,
+        opacity: panelOpacity,
+        pointerEvents: panelPointerEvents,
+        position: "fixed",
+        inset: 0,
+        backgroundColor: "#f8fafc",
+        zIndex: 120,
+        overflowY: "auto",
+      }}
     >
       {/* Top accent stripe */}
       <div
@@ -185,10 +193,7 @@ const Skills: React.FC<{ scrollProgress: MotionValue<number> }> = ({
           style={{ y: headingY, opacity: headingOpacity }}
           className="flex items-center gap-6 mb-14"
         >
-          <div
-            className="w-12 h-12 rounded-full"
-            style={{ backgroundColor: slate }}
-          />
+          <div className="w-12 h-12 rounded-full" style={{ backgroundColor: slate }} />
           <div>
             <h2
               style={{ ...font, color: slate }}
@@ -205,7 +210,7 @@ const Skills: React.FC<{ scrollProgress: MotionValue<number> }> = ({
           </div>
         </motion.div>
 
-        {/* Cards grid — 3 columns for better layout */}
+        {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((cat, i) => (
             <SkillCard
@@ -222,7 +227,7 @@ const Skills: React.FC<{ scrollProgress: MotionValue<number> }> = ({
 };
 
 /* ================================================================
-   PROJECTS COMPONENT (original, unchanged except Skills added)
+   PROJECTS COMPONENT
    ================================================================ */
 const Projects: React.FC<Props> = ({ scrollProgress }) => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -338,12 +343,11 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
     return () => window.removeEventListener("resize", measure);
   }, []);
 
-  // Fan expansion logic — faster expansion (2 scrolls) but long overall duration
   const contentOpacity = useTransform(scrollProgress, [0.1, 0.2], [0, 1]);
   const contentY = useTransform(scrollProgress, [0.2, 0.4], ["0%", "-120%"]);
 
   const fanX1 = useTransform(scrollProgress, [0.3, 0.5], [0, -600]);
-  const fanR1 = useTransform(scrollProgress, [0.3, 0.5], [0, -355]);
+  const fanR1 = useTransform(scrollProgress, [0.3, 0.5], [0, -15]);
   const fanX2 = useTransform(scrollProgress, [0.3, 0.5], [0, -300]);
   const fanR2 = useTransform(scrollProgress, [0.3, 0.5], [0, -8]);
   const fanX3 = useTransform(scrollProgress, [0.3, 0.5], [0, 0]);
@@ -369,18 +373,24 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
     },
   ];
 
+  const selectedProject = projects.find((p) => p.id === selectedId);
+
   return (
     <>
       {/* ── Projects layer ── */}
       <div className="fixed inset-0 bg-white overflow-hidden">
         <MinimizableNav />
-        <AnimatePresence>
-          {!selectedId ? (
+
+        <AnimatePresence mode="wait">
+          {selectedId === null ? (
+            /* ── Fan / Grid view ── */
             <motion.div
               key="grid"
+              initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="relative h-full w-full flex flex-col items-center justify-center"
             >
+              {/* Heading */}
               <motion.div
                 style={{ y: contentY, opacity: contentOpacity, x: -350 }}
                 className="flex flex-col items-start z-10 mb-72"
@@ -406,21 +416,23 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
                 </p>
               </motion.div>
 
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              {/* Cards */}
+              <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative w-[400px] h-[300px] flex items-center justify-center">
                   {projects.map((proj, i) => (
                     <motion.div
                       key={proj.id}
                       layoutId={`card-${proj.id}`}
                       onClick={() => setSelectedId(proj.id)}
-                      className="absolute w-full h-full rounded-[40px] shadow-2xl cursor-pointer overflow-hidden pointer-events-auto border-4 border-white"
+                      className="absolute w-full h-full rounded-[40px] shadow-2xl cursor-pointer overflow-hidden border-4 border-white"
                       style={{
                         backgroundColor: proj.color,
                         zIndex: 10 + i,
+                        pointerEvents: "auto", // FIX: re-enable per card
                         ...cardTransforms[i],
                       }}
                       whileHover={{
-                        scale: 1.1,
+                        scale: 1.08,
                         zIndex: 100,
                         transition: { duration: 0.2 },
                       }}
@@ -428,6 +440,7 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
                       <motion.img
                         layoutId={`image-${proj.id}`}
                         src={proj.image}
+                        alt={proj.label}
                         className="absolute inset-0 w-full h-full object-cover opacity-30"
                       />
                       <div className="absolute inset-0 flex items-center justify-center p-8">
@@ -449,22 +462,29 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
               </div>
             </motion.div>
           ) : (
+            /* ── Detail view ── */
             <motion.div
               key="details"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute inset-0 bg-white z-150 flex p-16 gap-16 items-center"
+              exit={{ opacity: 0 }}
+              // FIX: use inline style for z-index instead of invalid Tailwind z-150
+              style={{ zIndex: 150 }}
+              className="absolute inset-0 bg-white flex p-16 gap-16 items-center"
             >
+              {/* Close button */}
               <button
                 onClick={() => setSelectedId(null)}
-                className="absolute top-10 right-16 text-slate-600 font-black text-2xl z-200"
-                style={font}
+                // FIX: use inline style for z-index instead of invalid Tailwind z-200
+                style={{ ...font, zIndex: 200 }}
+                className="absolute top-10 right-16 text-slate-600 font-black text-2xl cursor-pointer bg-transparent border-none"
               >
                 CLOSE [X]
               </button>
 
-              {projects.find((p) => p.id === selectedId)?.isOtherProjects ? (
-                <div className="w-full max-w-4xl mx-auto">
+              {selectedProject?.isOtherProjects ? (
+                /* ── Other Projects list ── */
+                <div className="w-full max-w-4xl mx-auto overflow-y-auto max-h-full">
                   <motion.h2
                     layoutId={`title-${selectedId}`}
                     style={{ ...font, color: slate }}
@@ -503,14 +523,16 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
                   </div>
                 </div>
               ) : (
+                /* ── Single project detail ── */
                 <>
                   <motion.div
                     layoutId={`card-${selectedId}`}
-                    className="w-1/2 h-[75vh] rounded-[60px] overflow-hidden shadow-2xl"
+                    className="w-1/2 h-[75vh] rounded-[60px] overflow-hidden shadow-2xl flex-shrink-0"
                   >
                     <motion.img
                       layoutId={`image-${selectedId}`}
-                      src={projects.find((p) => p.id === selectedId)?.image}
+                      src={selectedProject?.image}
+                      alt={selectedProject?.label}
                       className="w-full h-full object-cover"
                     />
                   </motion.div>
@@ -521,18 +543,18 @@ const Projects: React.FC<Props> = ({ scrollProgress }) => {
                       style={{ ...font, color: slate }}
                       className="text-9xl font-black uppercase leading-none"
                     >
-                      {projects.find((p) => p.id === selectedId)?.label}
+                      {selectedProject?.label}
                     </motion.h2>
                     <div className="space-y-4">
                       <p className="text-3xl text-slate-800 leading-tight">
-                        {projects.find((p) => p.id === selectedId)?.explanation}
+                        {selectedProject?.explanation}
                       </p>
                       <p className="text-slate-600 font-mono font-bold text-xl uppercase tracking-widest">
-                        {projects.find((p) => p.id === selectedId)?.tech}
+                        {selectedProject?.tech}
                       </p>
                     </div>
                     <a
-                      href={projects.find((p) => p.id === selectedId)?.link}
+                      href={selectedProject?.link}
                       className="bg-slate-600 text-white px-12 py-5 rounded-full text-2xl font-bold w-fit shadow-xl hover:bg-slate-700 transition-all"
                       style={font}
                     >
